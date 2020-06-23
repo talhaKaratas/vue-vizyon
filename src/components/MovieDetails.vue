@@ -11,7 +11,7 @@
             <h2>{{ movieDetails.title }}</h2>
             <p>{{ movieDetails.overview }}</p>
             <div>Average Rating: {{ movieDetails.vote_average.toFixed(1) }}</div>
-            <a :href="ticketPath" class="btn btn-success button">Get Tickets</a>
+            <router-link :to="ticketPath" class="btn btn-success button">Get Tickets</router-link>
         </div>
       </div>
     </div>
@@ -50,6 +50,7 @@ export default {
         this.movieDetails = res.body;
       });
     this.loading = false;
+    window.scroll(0,0);
   }
 };
 </script>
