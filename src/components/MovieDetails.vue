@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       movieDetails: {},
-      loading: true
+      loading: true,
     };
   },
   computed: {
@@ -48,8 +48,8 @@ export default {
       .get(`https://vizyon-866f4.firebaseio.com/moviedetails/${this.movieId}.json`)
       .then(res => {
         this.movieDetails = res.body;
+        this.loading = false;
       });
-    this.loading = false;
     window.scroll(0,0);
   }
 };

@@ -10,9 +10,8 @@ import routes from './router/router';
 
 Vue.use(VueRouter);
 
-
-
 const router = new VueRouter(routes);
+
 
 new Vue({
   el: '#app',
