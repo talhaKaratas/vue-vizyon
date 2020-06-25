@@ -1,6 +1,7 @@
 <template>
   <div>
-    <app-loader v-if="loading"></app-loader>
+    <app-loader v-if="loading" class="loader"></app-loader>
+    <img class="backdrop-image" :src="backdropPath" alt />
     <div class="container pt-5">
       <div class="row">
         <div class="col-sm-4">
@@ -33,11 +34,15 @@ export default {
   data() {
     return {
       poster: "",
+      backdrop: ""
     };
   },
   computed: {
     posterPath() {
       return `https://image.tmdb.org/t/p/w500/${this.poster}`;
+    },
+    backdropPath() {
+      return `https://image.tmdb.org/t/p/w1280${this.backdrop}`;
     }
   },
   created() {
@@ -47,6 +52,7 @@ export default {
       .then(res => {
         console.log(res.body);
         this.poster = res.body.poster_path;
+        this.backdrop = res.body.backdrop_path;
         this.loading = false;
       });
   }
@@ -54,14 +60,24 @@ export default {
 </script>
 
 <style scoped>
-.btn{
+.btn {
   border-radius: 80px;
 }
 .clocks {
   margin-left: 100px;
   margin-top: 40px;
 }
-.poster{
+.poster {
   width: 100%;
 }
+.backdrop-image {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: blur(20px);
+  transform: scale(1.1);
+}
 </style>
+
